@@ -1,0 +1,37 @@
+import { Component,useEffect,useState,type FormEvent,type ReactNode } from 'react';
+import { NavLink,Route,Routes,useLocation,useNavigate } from 'react-router-dom';
+import { ArrowRight,CreditCard,Download,LayoutDashboard,Leaf,Plus,ShieldCheck,Store,Wifi,WifiOff } from 'lucide-react';
+import { Toaster,toast } from 'sonner';
+import { useRegisterSW } from 'virtual:pwa-register/react';
+import { dispatch,download,getStorageError,STORAGE_KEY,useDatabase } from './infrastructure/store';
+import Modal from './components/Modal';
+import Rules from './components/Rules';
+import MemberView from './features/MemberView';
+import Counter from './features/Counter';
+import Admin from './features/Admin';
+import { Empty,message } from './lib/utils';
+const brand=import.meta.env.VITE_APP_NAME||'Vibe Rewards';
+function AppContent(){
+ const db=useDatabase(),nav=useNavigate(),location=useLocation();
+ const [online,setOnline]=useState(navigator.onLine),[rules,setRules]=useState(false),[register,setRegister]=useState(false),[sampleConfirm,setSampleConfirm]=useState(false);
+ const [name,setName]=useState(''),[phone,setPhone]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ const {offlineReady:[ready],needRefresh:[refresh],updateServiceWorker}=useRegisterSW();
+ useEffect(()=>{const on=()=>setOnline(navigator.onLine);window.addEventListener('online',on);window.addEventListener('offline',on);return()=>{window.removeEventListener('online',on);window.removeEventListener('offline',on);};},[]);
+ const path=location.pathname,role=path.startsWith('/counter')?'counter':path.startsWith('/admin')||path==='/judge'?'admin':'member';
+ const loadSample=async(reset=false)=>{try{await dispatch({type:'sample',reset});toast.success(reset?'Đã đặt lại dữ liệu mẫu BTC.':'Đã nạp dữ liệu mẫu. Có thể chọn KT-004 để kiểm tra.');setSampleConfirm(false);}catch(e){toast.error(message(e));}};
+ const onSample=()=>{if(db.sampleLoaded){toast.info('Dữ liệu mẫu đã được nạp. Vào Quản trị để đặt lại nếu cần.');return;}if(db.members.length||getStorageError())setSampleConfirm(true);else void loadSample();};
+ const registerMember=async(e:FormEvent)=>{e.preventDefault();setError('');setBusy(true);try{const next=await dispatch({type:'register',name,phone});const m=next.members.at(-1)!;sessionStorage.setItem('vibe:member',m.code);setRegister(false);setName('');setPhone('');nav(`/member?member=${m.code}`);toast.success(`Chào ${m.fullName}! Thẻ ${m.code} đã sẵn sàng.`);}catch(e){setError(message(e));}finally{setBusy(false);}};
+ return <><header className="topbar"><NavLink to="/member" className="brand"><span className="brand-icon"><Leaf size={23}/></span><span>vibe<span className="brand-light">rewards</span><small>THÊM GẮN KẾT · THÊM ĐẶC QUYỀN</small></span></NavLink><nav className="role-switch" aria-label="Chuyển vai"><NavLink to="/member" className={role==='member'?'active':''}><CreditCard size={17}/><span>Thành viên</span></NavLink><NavLink to="/counter" className={role==='counter'?'active':''}><Store size={17}/><span>Quầy thu ngân</span></NavLink><NavLink to="/admin" className={role==='admin'?'active':''}><LayoutDashboard size={17}/><span>Quản trị</span></NavLink></nav><div className="top-actions"><span className={`connection ${!online?'offline':''}`}>{online?<Wifi size={15}/>:<WifiOff size={15}/>}<span>{!online?'Đang offline':ready?'Sẵn sàng offline':'Lưu trên thiết bị'}</span></span><button className="avatar" onClick={()=>{setError('');setRegister(true);}} aria-label="Đăng ký thành viên"><Plus size={19}/></button></div></header>
+ {!online&&<div className="offline-banner"><WifiOff size={16}/>Bạn đang offline. Tích điểm và đổi ưu đãi vẫn hoạt động trên thiết bị này.</div>}
+ {refresh&&<div className="update-banner">Có phiên bản mới. <button onClick={()=>void updateServiceWorker(true)}>Tải lại khi bạn đã hoàn tất giao dịch</button></div>}
+ {getStorageError()&&<div className="storage-banner" role="alert">{getStorageError()} <button onClick={()=>download('vibe-raw-backup.txt',localStorage.getItem(STORAGE_KEY)||'')}>Tải dữ liệu thô</button><button onClick={()=>setSampleConfirm(true)}>Đặt lại mẫu</button></div>}
+ <div className="workspace"><Routes><Route path="/" element={<MemberView db={db} onRegister={()=>{setError('');setRegister(true);}} onSample={onSample} onRules={()=>setRules(true)}/>}/><Route path="/member/*" element={<MemberView db={db} onRegister={()=>{setError('');setRegister(true);}} onSample={onSample} onRules={()=>setRules(true)}/>}/><Route path="/counter" element={<Counter db={db}/>}/><Route path="/admin/*" element={<Admin db={db} onSample={onSample} onReset={()=>setSampleConfirm(true)}/>}/><Route path="/judge" element={<Admin db={db} onSample={onSample} onReset={()=>setSampleConfirm(true)} judge/>}/><Route path="/rules" element={<div className="panel standalone"><h1>Thể lệ chương trình</h1><Rules/></div>}/><Route path="*" element={<Empty title="Không tìm thấy trang"><NavLink className="button" to="/member">Về thẻ thành viên</NavLink></Empty>}/></Routes></div>
+ <footer className="footer"><span>© 2026 {brand}<i/>Mỗi lần ghé, thêm niềm vui.</span><div><button onClick={()=>setRules(true)}>Thể lệ</button><NavLink to="/judge">Dành cho giám khảo</NavLink><span><ShieldCheck size={13}/>Dữ liệu trên thiết bị</span></div></footer>
+ {rules&&<Modal title="Thể lệ Vibe Rewards" onClose={()=>setRules(false)}><Rules/></Modal>}
+ {register&&<Modal title="Một chiếc thẻ, nhiều niềm vui" onClose={()=>setRegister(false)}><p className="muted">Đăng ký miễn phí. Chỉ cần tên và số điện thoại.</p><form onSubmit={e=>void registerMember(e)} className="form-stack"><label>Họ và tên<input autoFocus required autoComplete="name" value={name} maxLength={80} onChange={e=>setName(e.target.value)} placeholder="Ví dụ: Lan Hương"/></label><label>Số điện thoại<input required type="tel" autoComplete="tel" value={phone} maxLength={25} onChange={e=>setPhone(e.target.value)} placeholder="0900 000 000"/></label>{error&&<p className="error" role="alert">{error}</p>}<p className="small muted">Dữ liệu chỉ lưu trên trình duyệt. Đây là thẻ demo, không xác thực chủ sở hữu số điện thoại.</p><button className="button full" disabled={busy}>{busy?'Đang tạo thẻ…':'Tạo thẻ thành viên'}<ArrowRight size={17}/></button></form></Modal>}
+ {sampleConfirm&&<Modal title="Đặt lại dữ liệu mẫu?" onClose={()=>setSampleConfirm(false)}><p>Thao tác sẽ thay dữ liệu hiện tại bằng đúng 8 thành viên, 7 giao dịch và 3 ưu đãi của BTC. Các giao dịch và thẻ mới trên thiết bị sẽ bị thay thế.</p><button className="button secondary full" onClick={()=>download('vibe-backup.json',JSON.stringify(db,null,2))}><Download size={17}/>Tải bản sao lưu trước</button><button className="button danger full" onClick={()=>void loadSample(true)}>Xác nhận thay bằng dữ liệu mẫu</button></Modal>}
+ <Toaster position="top-center" richColors closeButton/>
+ </>;
+}
+class ErrorBoundary extends Component<{children:ReactNode},{error:boolean}>{state={error:false};static getDerivedStateFromError(){return {error:true};}render(){return this.state.error?<main className="standalone panel"><h1>Ứng dụng chưa tải được</h1><p>Dữ liệu đã lưu vẫn còn trên trình duyệt. Hãy tải lại trang; nếu lỗi tiếp diễn, dùng bản sao lưu để khôi phục.</p><button className="button" onClick={()=>window.location.reload()}>Tải lại</button></main>:this.props.children;}}
+export default function App(){return <ErrorBoundary><AppContent/></ErrorBoundary>;}
