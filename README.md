@@ -15,9 +15,8 @@
 | Minh chứng dùng AI | `<Kèm trong ZIP hoặc URL riêng>` |
 | Bảng kiểm thử | `<Kèm trong ZIP hoặc URL riêng>` |
 
-> Tiêu chí vòng loại: https://vibecoding.info.vn/tieu-chi-cham-thi
+
 > Bảng A: ít nhất 6 ca kiểm thử; chỉ dùng Mock thì nhóm A3 tối đa 4/15 điểm.
-> Bảng B: ít nhất 3 ca kiểm thử; AI thật hoặc Mock minh bạch đều có thể đạt 100/100 theo chuẩn bảng B.
 > Không đưa khóa API hoặc mật khẩu vào bài nộp.
 
 ## 2. Tính năng chính
