@@ -1,122 +1,30 @@
-# HHD Group — Cuộc thi Vibe Coding 2026
+# Vibe Rewards
 
-> Các mục dạng `<...>` là thông tin cần đội điền trước khi nộp bài.
+Vibe Rewards số hóa thẻ thành viên với hai vai **Thành viên** và **Quầy** trong cùng một web app tiếng Việt. Dữ liệu lưu trong trình duyệt bằng `localStorage`. Bản production có thể mở và giao dịch offline sau lần tải đầu.
 
-## 1. Thông tin chung
+## Chạy demo
 
-| Hạng mục | Nội dung |
-|---|---|
-| Tên đội thi | `Hoan và 2 thằng đệ` |
-| Bảng thi | `Bảng A - Công nghệ ` (chọn một) |
-| Đề bài bốc thăm | Đề số `<số>` — `<Tên đề, ví dụ: AI tư vấn chọn gói Hosting/Domain>` |
-| Demo online | `<URL nếu có; bảng B có thể chạy từ source>` |
-| Video demo (≤ 02 phút) | `<URL>` |
-| Source ZIP | `<URL tải gói mã nguồn ZIP>` |
-| Minh chứng dùng AI | `<Kèm trong ZIP hoặc URL riêng>` |
-| Bảng kiểm thử | `<Kèm trong ZIP hoặc URL riêng>` |
-
-
-> Bảng A: ít nhất 6 ca kiểm thử; chỉ dùng Mock thì nhóm A3 tối đa 4/15 điểm.
-> Không đưa khóa API hoặc mật khẩu vào bài nộp.
-
-## 2. Tính năng chính
-
-- `<Tính năng 1: nhập dữ liệu đầu vào>`
-- `<Tính năng 2: AI phân tích và gợi ý>`
-- `<Tính năng 3: lưu / xem / xoá lịch sử>`
-- `<Tính năng 4 theo đề>`
-- `<Tính năng 5 theo đề>`
-
-## 3. Công nghệ sử dụng
-
-| Lớp | Công nghệ (ghi đúng thứ đã dùng) |
-|---|---|
-| Giao diện | `<HTML/CSS/JS thuần \| React \| Vue>` + `<Tailwind CSS hoặc không>` |
-| Thư viện | `<Chart.js, Lucide Icons, ...>` (kèm phiên bản) |
-| Lưu trữ | localStorage (phía trình duyệt, không có backend) |
-| Triển khai | `<Vercel \| Netlify \| GitHub Pages>` |
-
-## 4. Tích hợp AI
-
-- **Chế độ đang dùng**: `<API thật | Mock>` (chọn một)
-  - API thật: `<Tên model, ví dụ gpt-4o-mini / gemini-1.5-flash>`
-  - Mock: giao diện hiển thị dòng *"Bản demo vòng loại - Dữ liệu mô phỏng AI"*
-- **Mục đích**: phân tích dữ liệu người dùng nhập và trả về gợi ý theo ngữ cảnh đề bài.
-- **Bảo mật khoá API**: không ghi khoá trong mã nguồn phía client. Đặt trong biến môi trường (`.env`, không commit) và gọi qua serverless function / proxy; nếu chỉ dùng Mock thì không cần khoá.
-
-Biến môi trường (nếu dùng API thật):
-
-```env
-AI_API_KEY=<khoá của bạn>
-AI_MODEL=<tên model>
-```
-
-## 5. Cài đặt và chạy local
-
-Yêu cầu: trình duyệt hiện đại; Node.js ≥ 18 nếu dùng React/Vue/Vite.
-
-**Cách A — HTML/CSS/JS thuần**
-
-1. Giải nén file ZIP.
-2. Mở trực tiếp `index.html` trên trình duyệt, hoặc chạy server tĩnh: `npx serve .`
-
-**Cách B — React/Vue (Vite)**
-
-```bash
+```sh
 npm install
-npm run dev      # chạy dev, mặc định http://localhost:5173
-npm run build    # build production ra thư mục dist/
+npm run dev
 ```
 
-> Chỉ giữ lại cách phù hợp với dự án của đội, xoá cách còn lại.
+Máy đã cài dependencies chỉ cần chạy `npm run dev`. Mở địa chỉ Vite in trong terminal, mặc định là `http://localhost:5173`. App chạy với cấu hình mặc định. Nếu muốn đổi tên chương trình, sao chép `.env.example` thành `.env` và sửa `VITE_APP_NAME`. Git bỏ qua `.env`.
 
-## 6. Cấu trúc thư mục
+1. Bấm **Nạp dữ liệu mẫu** và xác nhận. Thẻ **KT-004** của Dũng Phạm hiện **3.200 điểm**, hạng **Bạc**.
+2. Chuyển sang **Quầy**, tra cứu KT-008, nhập **1.000.000đ** và **TX-NEW-001** để cộng **100 điểm**. Gửi lại cùng mã để thấy thông báo trùng.
+3. Chọn thẻ **KT-005** ở vai Thành viên và đổi **Voucher 20.000đ**. Số dư còn **5.300 điểm** và voucher xuất hiện trong ví.
+4. Mở **Giám khảo** để chạy tự kiểm tra năm ca, xem QR chuẩn KT-004 hoặc mở từng ca đã điền sẵn.
+5. Mở **Thống kê** để xem tổng thành viên và tổng điểm đã phát.
 
-```text
-<tên-dự-án>/
-├── index.html
-├── src/            # mã nguồn
-├── public/         # tài nguyên tĩnh
-├── .env.example    # mẫu biến môi trường (nếu có)
-└── README.md
-```
+Dữ liệu mẫu gồm 8 thành viên, 7 giao dịch, 3 ưu đãi và 8 ảnh QR từ workbook trong repo. Nạp lại sẽ thay thế dữ liệu cục bộ. Tỉ lệ mặc định **10.000đ = 1 điểm** làm tròn xuống. Hạng **Đồng** dưới 1.000 điểm, **Bạc** từ 1.000 điểm và **Vàng** từ 5.000 điểm. App công bố toàn bộ quy tắc ở mục **Thể lệ**.
 
-## 7. Truy cập và phân quyền
+## QR, offline và triển khai
 
-- Không yêu cầu đăng nhập; chuyển đổi giữa màn hình người dùng và màn hình quản trị ngay trên giao diện.
-- Màn hình quản trị: xem và xoá danh sách bản ghi trong localStorage.
+- Quầy có thể đọc QR bằng camera, chọn ảnh, nhập mã tay hoặc dùng đầu quét USB/Bluetooth gửi mã rồi Enter. Camera trình duyệt hoạt động trên HTTPS hoặc localhost.
+- Kiểm tra offline với `npm run build` rồi `npm run preview`. Mở bản preview một lần để service worker tải tài nguyên, sau đó ngắt mạng và tải lại trang. Máy chủ dev dùng cho phát triển nhanh.
+- `npm run check` chạy ESLint, TypeScript, Vitest và production build. Để chạy kiểm thử trình duyệt, dùng `npx playwright install chromium` rồi `npm run e2e`.
+- Repo có thể nhập vào Vercel với preset **Vite**, build bằng `npm run build` và publish thư mục `dist`. Vercel dùng HTTPS cho luồng camera. Không cần API key cho bản demo.
+- Khi tái tạo dữ liệu mẫu từ workbook BTC, chạy `python scripts/seed.py`.
 
-## 8. Giới hạn hiện tại
-
-- Dữ liệu chỉ lưu trên trình duyệt hiện tại; xoá dữ liệu trình duyệt hoặc đổi thiết bị sẽ mất dữ liệu.
-- Không có xác thực, nên màn hình quản trị không bảo mật.
-- Tính năng AI ở mức demo phục vụ vòng loại (nếu dùng Mock, dữ liệu trả về không phải kết quả thật).
-
-## 9. Nguồn tham khảo
-
-- Google Fonts, Lucide Icons
-- Bộ thông số dịch vụ mẫu do Ban tổ chức cung cấp
-
-
-## 10. Minh chứng dùng AI để xây dựng sản phẩm
-
-Tối đa 1 trang kèm tối đa 5 ảnh/đoạn hội thoại chọn lọc. Ghi mục tiêu → yêu cầu cho AI → vấn đề phát hiện khi thử → yêu cầu sửa → kết quả kiểm tra lại.
-
-- `<Tên tệp minh chứng hoặc liên kết>`
-- `<Tóm tắt một vòng thử và cải thiện>`
-
-## 11. Bảng kiểm thử
-
-Bảng A: ít nhất 6 ca, gồm 2 bình thường, 2 đầu vào không hợp lệ, 2 ca biên/sự cố. Bảng B: ít nhất 3 ca, gồm bình thường, nhập thiếu/sai và một ca biên. Chấp nhận kiểm tra thủ công; ghi kết quả thực tế.
-
-| Mã ca | Loại ca | Dữ liệu và bước thử | Kỳ vọng | Kết quả thực tế | Đạt/Chưa đạt |
-|---|---|---|---|---|---|
-| TC01 | `<Bình thường>` | `<Điền>` | `<Điền>` | `<Điền sau khi thử>` | `<Điền>` |
-
-## 12. Hồ sơ bàn giao
-
-- Source ZIP chứa mã nguồn và README này; chỉ kèm cấu hình mẫu.
-- Video tối đa 2 phút thể hiện thao tác thực tế và đủ 5 tính năng.
-- Minh chứng dùng AI và bảng kiểm thử nằm trong ZIP hoặc có liên kết riêng.
-- Ghi rõ tài khoản/dữ liệu demo nếu có.
-- Bản nộp trước hạn là căn cứ chấm; không sửa tính năng sau hạn nộp.
+Xem thêm [hướng dẫn sử dụng](docs/USER_GUIDE.md), [kiến trúc](docs/ARCHITECTURE.md), [quyết định triển khai](docs/DECISIONS.md), [kịch bản demo](docs/DEMO_SCRIPT.md) và [kết quả kiểm thử](docs/TEST_REPORT.md).

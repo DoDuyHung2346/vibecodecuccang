@@ -1,0 +1,228 @@
+{
+  "members": {
+    "KT-001": {
+      "code": "KT-001",
+      "fullName": "An Nguyễn",
+      "phone": "0900001001",
+      "openingPoints": 200,
+      "points": 250,
+      "status": "active",
+      "joinedAt": "2026-09-05"
+    },
+    "KT-002": {
+      "code": "KT-002",
+      "fullName": "Bình Trần",
+      "phone": "0900001002",
+      "openingPoints": 1300,
+      "points": 1450,
+      "status": "active",
+      "joinedAt": "2026-08-17"
+    },
+    "KT-003": {
+      "code": "KT-003",
+      "fullName": "Chi Lê",
+      "phone": "0900001003",
+      "openingPoints": 1000,
+      "points": 800,
+      "status": "active",
+      "joinedAt": "2026-07-22"
+    },
+    "KT-004": {
+      "code": "KT-004",
+      "fullName": "Dũng Phạm",
+      "phone": "0900001004",
+      "openingPoints": 3000,
+      "points": 3200,
+      "status": "active",
+      "joinedAt": "2026-06-14"
+    },
+    "KT-005": {
+      "code": "KT-005",
+      "fullName": "Hà Võ",
+      "phone": "0900001005",
+      "openingPoints": 5000,
+      "points": 5800,
+      "status": "active",
+      "joinedAt": "2026-04-09"
+    },
+    "KT-006": {
+      "code": "KT-006",
+      "fullName": "Minh Đỗ",
+      "phone": "0900001006",
+      "openingPoints": 12000,
+      "points": 12500,
+      "status": "active",
+      "joinedAt": "2026-02-28"
+    },
+    "KT-007": {
+      "code": "KT-007",
+      "fullName": "Ngọc Bùi",
+      "phone": "0900001007",
+      "openingPoints": 4000,
+      "points": 4700,
+      "status": "active",
+      "joinedAt": "2026-03-11"
+    },
+    "KT-008": {
+      "code": "KT-008",
+      "fullName": "Phúc Hoàng",
+      "phone": "0900001008",
+      "openingPoints": 0,
+      "points": 0,
+      "status": "active",
+      "joinedAt": "2026-10-10"
+    }
+  },
+  "ledger": [
+    {
+      "txCode": "TX-KT-001",
+      "memberCode": "KT-001",
+      "type": "earn",
+      "createdAt": "2026-10-03T09:15:00+07:00",
+      "amountVnd": 500000,
+      "delta": 50,
+      "balanceAfter": 250,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-001"
+    },
+    {
+      "txCode": "TX-KT-002",
+      "memberCode": "KT-002",
+      "type": "earn",
+      "createdAt": "2026-10-04T11:40:00+07:00",
+      "amountVnd": 1500000,
+      "delta": 150,
+      "balanceAfter": 1450,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-002"
+    },
+    {
+      "txCode": "TX-KT-003",
+      "memberCode": "KT-003",
+      "type": "redeem",
+      "createdAt": "2026-10-05T14:05:00+07:00",
+      "amountVnd": 0,
+      "delta": -200,
+      "balanceAfter": 800,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-003"
+    },
+    {
+      "txCode": "TX-KT-004",
+      "memberCode": "KT-004",
+      "type": "earn",
+      "createdAt": "2026-10-06T18:20:00+07:00",
+      "amountVnd": 2000000,
+      "delta": 200,
+      "balanceAfter": 3200,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-004"
+    },
+    {
+      "txCode": "TX-KT-005",
+      "memberCode": "KT-005",
+      "type": "earn",
+      "createdAt": "2026-10-08T10:30:00+07:00",
+      "amountVnd": 8000000,
+      "delta": 800,
+      "balanceAfter": 5800,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-005"
+    },
+    {
+      "txCode": "TX-KT-006",
+      "memberCode": "KT-006",
+      "type": "earn",
+      "createdAt": "2026-10-09T16:10:00+07:00",
+      "amountVnd": 5000000,
+      "delta": 500,
+      "balanceAfter": 12500,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-006"
+    },
+    {
+      "txCode": "TX-KT-007",
+      "memberCode": "KT-007",
+      "type": "earn",
+      "createdAt": "2026-10-11T12:55:00+07:00",
+      "amountVnd": 7000000,
+      "delta": 700,
+      "balanceAfter": 4700,
+      "note": "Dữ liệu mẫu đã ghi nhận",
+      "legacyHistoryId": "KT-LS-007"
+    }
+  ],
+  "rewards": [
+    {
+      "code": "KT-VCH-01",
+      "name": "Voucher 20.000đ",
+      "description": "Giảm giá đơn hàng",
+      "costPoints": 500,
+      "active": true,
+      "kind": "voucher",
+      "sortOrder": 0,
+      "valueVnd": 20000
+    },
+    {
+      "code": "KT-VCH-02",
+      "name": "Voucher 50.000đ",
+      "description": "Giảm giá đơn hàng",
+      "costPoints": 1100,
+      "active": true,
+      "kind": "voucher",
+      "sortOrder": 1,
+      "valueVnd": 50000
+    },
+    {
+      "code": "KT-VCH-03",
+      "name": "Quà tặng đặc biệt",
+      "description": "Quà tặng mô phỏng",
+      "costPoints": 2000,
+      "active": true,
+      "kind": "gift",
+      "sortOrder": 2
+    }
+  ],
+  "cases": [
+    {
+      "id": "TC-KT-01",
+      "title": "Cộng điểm mới",
+      "member": "KT-008",
+      "reference": "TX-NEW-001",
+      "amount": 1000000,
+      "expected": "Cộng 100 điểm một lần, số dư từ 0 lên 100"
+    },
+    {
+      "id": "TC-KT-02",
+      "title": "Nhập lại giao dịch",
+      "member": "KT-002",
+      "reference": "TX-KT-002",
+      "amount": 1500000,
+      "expected": "Báo trùng, không cộng thêm 150 điểm"
+    },
+    {
+      "id": "TC-KT-03",
+      "title": "Đổi ưu đãi đủ điểm",
+      "member": "KT-005",
+      "reference": "KT-VCH-01",
+      "amount": 0,
+      "expected": "Tạo voucher trong ví và số dư từ 5800 còn 5300"
+    },
+    {
+      "id": "TC-KT-04",
+      "title": "Đổi ưu đãi thiếu điểm",
+      "member": "KT-008",
+      "reference": "KT-VCH-01",
+      "amount": 0,
+      "expected": "Từ chối đổi; số dư vẫn là 0"
+    },
+    {
+      "id": "TC-KT-05",
+      "title": "Quét QR chuẩn của BTC",
+      "member": "KT-004",
+      "reference": "KT-004",
+      "amount": 0,
+      "expected": "Đọc đúng KT-004 và mở hồ sơ Dũng Phạm. Phần quét là điểm thưởng; không bắt buộc."
+    }
+  ]
+}
