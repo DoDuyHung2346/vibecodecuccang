@@ -1109,3 +1109,239 @@ dialog::backdrop {
     height: 53px !important;
   }
 }
+
+/* Stitch design system, adapted to the live rewards flows. */
+:root {
+  --ink: #17221d;
+  --dark: #034734;
+  --green: #006347;
+  --mint: #d5f8e7;
+  --muted: #53655c;
+  --line: #e9e7e2;
+  --surface: #fff;
+  --shadow: 0 3px 14px #143a2610;
+  color: var(--ink);
+  background: #f8f7f4;
+}
+.top {
+  background: #fdfcf9;
+}
+.top-shell {
+  gap: 12px;
+}
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-rules {
+  white-space: nowrap;
+}
+.brand-mark {
+  border-radius: 50%;
+}
+.role-tabs,
+.subnav {
+  border: 0;
+  background: #eeece8;
+  border-radius: 999px;
+}
+.role-tabs a,
+.subnav a {
+  border-radius: 999px;
+}
+.subnav {
+  width: fit-content;
+  max-width: calc(100% - 30px);
+  padding: 5px;
+}
+.subnav a[aria-current='page'] {
+  background: #fff;
+  box-shadow: 0 2px 7px #192c1b14;
+}
+.panel {
+  border-radius: 22px;
+}
+.primary,
+.secondary,
+.danger,
+.hero-secondary,
+.role-select select {
+  border-radius: 999px;
+}
+.primary {
+  background: var(--dark);
+}
+.primary:hover {
+  background: var(--green);
+}
+.secondary {
+  background: #f1efeb;
+  border-color: transparent;
+}
+.secondary:hover {
+  background: var(--mint);
+}
+.sample-strip .secondary,
+.pos-banner .actions .secondary:last-child,
+.content > .page-head > .primary:has(+ *) {
+  background: #ffe3a4;
+  color: #3f2d05;
+}
+.hero {
+  background: linear-gradient(130deg, #034734, #0b6a4d);
+}
+.hero .light {
+  background: #ffe3a4;
+  color: #392b0f;
+}
+.membership {
+  border-radius: 26px;
+}
+.membership.gold {
+  background: linear-gradient(133deg, #e4b74f, #fbe39e 58%, #e8b538);
+}
+.membership.silver {
+  background: linear-gradient(130deg, #b8c2bd, #f0f3f0 62%, #d1d9d4);
+}
+.membership.bronze {
+  background: linear-gradient(130deg, #573322, #915b3e);
+}
+.card-qr {
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px #14251a20;
+}
+.card-qr img {
+  image-rendering: pixelated;
+}
+.tier {
+  background: #ffffff28;
+  border-color: currentColor;
+}
+.reward {
+  position: relative;
+}
+.reward .tile-icon,
+.kpi .tile-icon {
+  border-radius: 15px;
+}
+.reward .tile-icon.warm,
+.kpi:nth-child(2) .tile-icon {
+  background: #ffe6af;
+  color: #6a490d;
+}
+.reward .secondary {
+  background: var(--dark);
+  color: white;
+}
+.reward .secondary:hover {
+  background: var(--green);
+}
+.pos-banner {
+  background: linear-gradient(125deg, #034734, #08684a);
+  color: white;
+  padding: clamp(18px, 4vw, 34px);
+  border-radius: 23px;
+}
+.pos-banner .eyebrow,
+.pos-banner p {
+  color: #d2f4e3;
+}
+.step-marker {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: var(--dark);
+  color: white;
+  font-size: 0.88rem;
+}
+.pos-step > .secondary {
+  justify-content: flex-start;
+  padding-inline: 18px;
+  min-height: 66px;
+  color: #e1faed;
+  border-radius: 15px;
+  background: linear-gradient(115deg, #034734, #233b31);
+}
+.member-summary {
+  background: #f2f0ec;
+  border-radius: 17px;
+}
+.preview {
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--mint);
+}
+dialog {
+  border-radius: 25px;
+}
+.receipt {
+  background: linear-gradient(145deg, #d5f8e7, #f3fbf7);
+}
+.receipt-points {
+  color: var(--dark);
+}
+.rules-tier {
+  border-radius: 15px;
+  padding: 15px;
+}
+.rules-tier.bronze {
+  background: #f3e6dd;
+  color: #60381d;
+}
+.rules-tier.silver {
+  background: #edf0ee;
+  color: #294135;
+}
+.rules-tier.gold {
+  background: #fff0cf;
+  color: #624806;
+}
+@media (max-width: 700px) {
+  .header-tools {
+    display: none;
+  }
+  .subnav {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    background: #fffdfa;
+    border-top: 1px solid var(--line);
+  }
+  .subnav a {
+    border-radius: 14px;
+  }
+  .subnav a[aria-current='page'] {
+    background: var(--mint);
+    box-shadow: none;
+  }
+  .pos-banner {
+    gap: 12px;
+  }
+  .pos-banner .actions {
+    width: 100%;
+  }
+  .pos-banner .actions > button {
+    flex: 1 1 auto;
+  }
+  .reward-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .reward {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+  .reward > :not(.tile-icon) {
+    grid-column: 2;
+  }
+  .reward .tile-icon {
+    grid-row: span 5;
+  }
+  .reward button {
+    justify-self: end;
+  }
+}

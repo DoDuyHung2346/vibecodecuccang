@@ -223,7 +223,7 @@ export function Counter({
   }
   return (
     <>
-      <div className="page-head">
+      <div className="page-head pos-banner">
         <div>
           <div className="eyebrow">
             <Coins size={16} /> VẬN HÀNH CỬA HÀNG
@@ -250,9 +250,14 @@ export function Counter({
       ) : (
         <div className="counter-layout">
           <div className="stack">
-            <section className="panel stack">
+            <section className="panel stack pos-step">
               <div className="section-head">
-                <h2>Khách hàng</h2>
+                <h2>
+                  <span className="step-marker" aria-hidden="true">
+                    1
+                  </span>{' '}
+                  Khách hàng
+                </h2>
                 <button
                   className="text-button"
                   onClick={() => setRegistering(true)}
@@ -284,7 +289,12 @@ export function Counter({
               )
             ) : (
               <section className="panel stack">
-                <h2>Cộng điểm giao dịch</h2>
+                <h2>
+                  <span className="step-marker" aria-hidden="true">
+                    2
+                  </span>{' '}
+                  Cộng điểm giao dịch
+                </h2>
                 <form className="stack" onSubmit={submit}>
                   <label>
                     Số tiền giao dịch

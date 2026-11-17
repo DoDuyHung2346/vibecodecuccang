@@ -351,9 +351,18 @@ function App() {
               </NavLink>
             ))}
           </nav>
-          <span className="mode">
-            <i /> Chế độ thi
-          </span>
+          <div className="header-tools">
+            <span className="mode">
+              <i /> Chế độ thi
+            </span>
+            <Link
+              className="secondary header-rules"
+              to="/rules"
+              aria-label="Mở thể lệ"
+            >
+              <BookOpen size={16} /> Thể lệ
+            </Link>
+          </div>
           <label className="role-select">
             <span className="sr-only">Chuyển vai</span>
             <select
