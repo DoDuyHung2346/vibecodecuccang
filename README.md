@@ -59,7 +59,7 @@ Yêu cầu: trình duyệt hiện đại; Node.js ≥ 18 nếu dùng React/Vue/V
 
 1. Giải nén file ZIP.
 2. Mở trực tiếp `index.html` trên trình duyệt, hoặc chạy server tĩnh: `npx serve .`
-
+ 
 **Cách B — React/Vue (Vite)**
 
 ```bash
